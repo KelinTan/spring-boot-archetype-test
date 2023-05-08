@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    name: hikari-pool
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/archetype_prod?useSSL=false
+  flyway:
+    enabled: false
