@@ -1,5 +1,6 @@
 package com.github.kelin.archetype;
 
+import static com.github.kelin.archetype.TestConstants.USER_DATA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -10,15 +11,13 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 @MybatisTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-@Sql("classpath:data/user.sql")
+@Sql(USER_DATA)
 @Transactional
-@Rollback
 public class UserMapperTest {
     @Autowired
     private UserMapper userMapper;
