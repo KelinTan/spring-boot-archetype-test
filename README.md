@@ -9,3 +9,5 @@ Spring Boot Archetype Test
 * Controller Unit Test with @WebMvcTest and @AutoConfigureMockMvc
 
 * DB Test with @MybatisTest and @Sql
+
+* Mock Test with @MockBean and @Mock
