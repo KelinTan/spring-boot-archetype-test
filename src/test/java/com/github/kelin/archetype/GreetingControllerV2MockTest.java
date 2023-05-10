@@ -8,25 +8,20 @@ import com.github.kelin.archetype.controller.GreetingControllerV2;
 import com.github.kelin.archetype.entity.User;
 import com.github.kelin.archetype.mapper.UserMapper;
 import com.github.kelin.archetype.mapper.UserV2Mapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class GreetingControllerV2MockTest {
+    @InjectMocks
     private GreetingControllerV2 greetingControllerV2;
-
     @Mock
     private UserV2Mapper userV2Mapper;
     @Mock
     private UserMapper userMapper;
-
-    @BeforeEach
-    public void setup() {
-        greetingControllerV2 = new GreetingControllerV2(userMapper, userV2Mapper);
-    }
 
     @Test
     void testGreeting() {
