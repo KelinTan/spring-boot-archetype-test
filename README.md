@@ -17,4 +17,6 @@ Spring Boot Archetype Test
 
 * DB Test with @MybatisTest and @Sql
 
+* DB Test with @DataJpaTest and @Sql
+
 * Mock Test with @MockBean and @Mock
