@@ -1,13 +1,13 @@
-package com.github.kelin.archetype;
+package com.github.kelin.archetype.controller;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import com.github.kelin.archetype.controller.GreetingControllerV2;
 import com.github.kelin.archetype.entity.User;
 import com.github.kelin.archetype.mapper.UserMapper;
 import com.github.kelin.archetype.mapper.UserV2Mapper;
+import com.github.kelin.archetype.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,6 +22,8 @@ public class GreetingControllerV2MockTest {
     private UserV2Mapper userV2Mapper;
     @Mock
     private UserMapper userMapper;
+    @Mock
+    private UserRepository userRepository;
 
     @Test
     void testGreeting() {

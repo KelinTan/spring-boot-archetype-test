@@ -1,10 +1,21 @@
 package com.github.kelin.archetype.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+
+    public User() {
+    }
 
     public User(long id, String name) {
         this.id = id;
@@ -47,5 +58,4 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
-
 }
