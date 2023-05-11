@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v2")
 public class GreetingControllerV2 {
-
     private final UserMapper userMapper;
 
     private final UserV2Mapper userV2Mapper;
