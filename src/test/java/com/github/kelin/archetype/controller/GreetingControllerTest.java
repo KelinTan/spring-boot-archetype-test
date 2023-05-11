@@ -1,4 +1,4 @@
-package com.github.kelin.archetype;
+package com.github.kelin.archetype.controller;
 
 
 import com.github.kelin.archetype.controller.GreetingController;
