@@ -1,6 +1,5 @@
 package com.github.kelin.archetype.controller;
 
-
 import static com.github.kelin.archetype.TestConstants.USER_DATA;
 import static com.github.kelin.archetype.TestConstants.USER_V2_DATA;
 
