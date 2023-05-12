@@ -2,6 +2,7 @@ package com.github.kelin.archetype.controller;
 
 import static com.github.kelin.archetype.TestConstants.USER_DATA;
 import static com.github.kelin.archetype.TestConstants.USER_V2_DATA;
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -42,7 +43,7 @@ public class GreetingControllerV2Test {
     void testGreeting3() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/v2/greeting3").param("id", "1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("1"))
-                .andExpect(jsonPath("$.name").value("test"));
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.name", is("test")));
     }
 }
