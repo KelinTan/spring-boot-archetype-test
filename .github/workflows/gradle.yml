@@ -19,6 +19,6 @@ jobs:
     - uses: mirromutth/mysql-action@v1.1
       with:
         mysql version: '5.7' # Optional, default value is "latest". The version of the MySQL
-        mysql root password: 123456
+        mysql root password: 666666
     - name: check
-      run: ./gradlew check
+      run: ./gradlew check -PdatabasePassword=666666
