@@ -26,4 +26,10 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+    if (project.hasProperty("databaseUser")) {
+        systemProperty "SPRING_DATASOURCE_USERNAME", project.property("databaseUser")
+    }
+    if (project.hasProperty("databasePassword")) {
+        systemProperty "SPRING_DATASOURCE_PASSWORD", project.property("databasePassword")
+    }
 }
