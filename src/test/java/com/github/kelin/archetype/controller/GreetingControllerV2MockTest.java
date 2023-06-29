@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import com.github.kelin.archetype.entity.User;
 import com.github.kelin.archetype.mapper.UserMapper;
 import com.github.kelin.archetype.mapper.UserV2Mapper;
+import com.github.kelin.archetype.repository.CustomerRepository;
 import com.github.kelin.archetype.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,6 +24,8 @@ public class GreetingControllerV2MockTest {
     private UserMapper userMapper;
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private CustomerRepository customerRepository;
 
     @Test
     void testGreeting() {

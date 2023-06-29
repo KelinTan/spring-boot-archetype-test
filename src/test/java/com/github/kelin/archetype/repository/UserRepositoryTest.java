@@ -12,14 +12,12 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Sql(USER_DATA)
-@Transactional
 public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
