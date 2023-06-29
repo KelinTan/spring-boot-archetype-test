@@ -20,3 +20,7 @@ Spring Boot Archetype Test
 * DB Test with @DataJpaTest and @Sql
 
 * Mock Test with @MockBean and @Mock
+
+* DB test with @DataMongoTest
+
+* Integration Testing with @Testcontainers
