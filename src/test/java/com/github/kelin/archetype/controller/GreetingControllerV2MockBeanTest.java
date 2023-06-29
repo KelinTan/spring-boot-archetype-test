@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import com.github.kelin.archetype.entity.User;
 import com.github.kelin.archetype.mapper.UserMapper;
 import com.github.kelin.archetype.mapper.UserV2Mapper;
+import com.github.kelin.archetype.repository.CustomerRepository;
 import com.github.kelin.archetype.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class GreetingControllerV2MockBeanTest {
     private UserMapper userMapper;
     @MockBean
     private UserRepository userRepository;
+    @MockBean
+    private CustomerRepository customerRepository;
 
     @Test
     void testGreeting() throws Exception {

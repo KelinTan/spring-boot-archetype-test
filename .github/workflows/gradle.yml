@@ -20,5 +20,8 @@ jobs:
       with:
         mysql version: '5.7' # Optional, default value is "latest". The version of the MySQL
         mysql root password: 666666
+    - uses: supercharge/mongodb-github-action@1.8.0
+      with:
+        mongodb-version: '4.2.0' # Optional, default value is "latest". The version of the MongoDB
     - name: check
       run: ./gradlew check -PdatabasePassword=666666
