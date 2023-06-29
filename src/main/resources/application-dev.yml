@@ -6,5 +6,8 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME:root}
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/archetype_dev?useSSL=false&createDatabaseIfNotExist=true
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/archetype_dev
   flyway:
     enabled: true

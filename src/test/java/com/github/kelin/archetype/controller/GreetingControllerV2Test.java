@@ -46,4 +46,13 @@ public class GreetingControllerV2Test {
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.name", is("test")));
     }
+
+    // @Test
+    // void testGreeting4() throws Exception {
+    //     Customer saved = customerRepository.save(new Customer("Alice", "Smith"));
+    //     mvc.perform(MockMvcRequestBuilders.get("/v2/greeting4").param("id", saved.getId()))
+    //             .andExpect(status().isOk())
+    //             .andExpect(jsonPath("$.id", is(saved.getId())))
+    //             .andExpect(jsonPath("$.firstName", is("Alice")));
+    // }
 }
