@@ -1,15 +1,24 @@
 package com.github.kelin.archetype.entity;
 
+import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMERS;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "customers")
+import java.util.List;
+
+@Document(collection = CUSTOMERS)
 public class Customer {
     @Id
     public String id;
 
     public String firstName;
     public String lastName;
+    public int position;
+
+    @ReadOnlyProperty
+    public List<CustomerRecord> records;
 
     public Customer() {
     }
@@ -17,6 +26,20 @@ public class Customer {
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Customer(String firstName, String lastName, int position) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.position = position;
+    }
+
+    public List<CustomerRecord> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<CustomerRecord> records) {
+        this.records = records;
     }
 
     public String getId() {
@@ -41,5 +64,13 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
