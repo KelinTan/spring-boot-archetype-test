@@ -20,6 +20,9 @@ public class Customer {
     @ReadOnlyProperty
     public List<CustomerRecord> records;
 
+    @ReadOnlyProperty
+    public CustomerExtra extra;
+
     public Customer() {
     }
 
@@ -40,6 +43,14 @@ public class Customer {
 
     public void setRecords(List<CustomerRecord> records) {
         this.records = records;
+    }
+
+    public void setExtra(CustomerExtra extra) {
+        this.extra = extra;
+    }
+
+    public CustomerExtra getExtra() {
+        return extra;
     }
 
     public String getId() {

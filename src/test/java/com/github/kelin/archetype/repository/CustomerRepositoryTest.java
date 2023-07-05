@@ -1,17 +1,20 @@
 package com.github.kelin.archetype.repository;
 
 import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMERS;
+import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMER_EXTRA;
 import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMER_RECORDS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.limit;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.skip;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.unwind;
 import static org.springframework.data.mongodb.core.aggregation.LookupOperation.newLookup;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
 import com.github.kelin.archetype.entity.Customer;
+import com.github.kelin.archetype.entity.CustomerExtra;
 import com.github.kelin.archetype.entity.CustomerRecord;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +42,7 @@ public class CustomerRepositoryTest {
     public void setUp() {
         customerRepository.deleteAll();
         mongoTemplate.dropCollection(CustomerRecord.class);
+        mongoTemplate.dropCollection(CustomerExtra.class);
 
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Alice1", "Smith1", 1));
@@ -50,6 +54,11 @@ public class CustomerRepositoryTest {
         customerRecords.add(new CustomerRecord("Alice1", "record1-1"));
         customerRecords.add(new CustomerRecord("Alice2", "record2"));
         mongoTemplate.insertAll(customerRecords);
+
+        List<CustomerExtra> customerExtras = new ArrayList<>();
+        customerExtras.add(new CustomerExtra("Alice1", "extra1"));
+        customerExtras.add(new CustomerExtra("Alice2", "extra2"));
+        mongoTemplate.insertAll(customerExtras);
     }
 
     @Test
@@ -115,5 +124,29 @@ public class CustomerRepositoryTest {
 
         List<Customer> aggregated = mongoTemplate.aggregate(aggregation, CUSTOMERS, Customer.class).getMappedResults();
         assertEquals(1, aggregated.size());
+    }
+
+    @Test
+    public void findAggregateCustomerAndExtra() {
+        LookupOperation lookupOperation = newLookup()
+                .from(CUSTOMER_RECORDS)
+                .localField("firstName")
+                .foreignField("firstName")
+                .as("records");
+
+        LookupOperation lookupOperation2 = newLookup()
+                .from(CUSTOMER_EXTRA)
+                .localField("firstName")
+                .foreignField("firstName")
+                .as("extra");
+
+        MatchOperation matchOperation = match(where("firstName").is("Alice1"));
+        Aggregation aggregation = newAggregation(matchOperation, lookupOperation, lookupOperation2, unwind("extra"));
+
+        List<Customer> aggregated = mongoTemplate.aggregate(aggregation, CUSTOMERS, Customer.class).getMappedResults();
+        assertEquals(1, aggregated.size());
+        assertEquals(2, aggregated.get(0).getRecords().size());
+        assertEquals("record1", aggregated.get(0).getRecords().get(0).getRecord());
+        assertEquals("extra1", aggregated.get(0).getExtra().getData());
     }
 }
