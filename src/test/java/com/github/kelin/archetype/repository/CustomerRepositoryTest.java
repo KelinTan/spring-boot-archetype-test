@@ -13,16 +13,15 @@ import static org.springframework.data.mongodb.core.aggregation.LookupOperation.
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
+import com.github.kelin.archetype.BaseMongoTest;
 import com.github.kelin.archetype.entity.Customer;
 import com.github.kelin.archetype.entity.CustomerExtra;
 import com.github.kelin.archetype.entity.CustomerRecord;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.LookupOperation;
 import org.springframework.data.mongodb.core.aggregation.MatchOperation;
@@ -32,18 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @DataMongoTest
-public class CustomerRepositoryTest {
+public class CustomerRepositoryTest extends BaseMongoTest {
     @Autowired
     private CustomerRepository customerRepository;
-    @Autowired
-    private MongoTemplate mongoTemplate;
 
-    @BeforeEach
-    public void setUp() {
-        customerRepository.deleteAll();
-        mongoTemplate.dropCollection(CustomerRecord.class);
-        mongoTemplate.dropCollection(CustomerExtra.class);
-
+    @Override
+    protected void initData() {
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Alice1", "Smith1", 1));
         customers.add(new Customer("Alice2", "Smith2", 2));

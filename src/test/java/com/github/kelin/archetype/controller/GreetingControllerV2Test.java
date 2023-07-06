@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.github.kelin.archetype.BaseMongoTest;
 import com.github.kelin.archetype.entity.Customer;
 import com.github.kelin.archetype.repository.CustomerRepository;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @AutoConfigureMockMvc
 @SpringBootTest
 @SqlGroup({@Sql(USER_DATA), @Sql(USER_V2_DATA)})
-public class GreetingControllerV2Test {
+public class GreetingControllerV2Test extends BaseMongoTest {
     @Autowired
     private MockMvc mvc;
 
