@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 @AutoConfigureMockMvc
 @SpringBootTest
 @SqlGroup(Sql(TestConstants.USER_DATA), Sql(TestConstants.USER_V2_DATA))
-class GreetingControllerV2TestKt : BaseMongoTest() {
+class GreetingControllerV3TestKt : BaseMongoTest() {
     @Autowired
     lateinit var mvc: MockMvc
 
@@ -27,7 +27,7 @@ class GreetingControllerV2TestKt : BaseMongoTest() {
 
     @Test
     fun testGreeting() {
-        mvc.perform(MockMvcRequestBuilders.get("/v2/greeting").param("id", "1"))
+        mvc.perform(MockMvcRequestBuilders.get("/v3/greeting").param("id", "1"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(
                 MockMvcResultMatchers.content().json(
@@ -42,7 +42,7 @@ class GreetingControllerV2TestKt : BaseMongoTest() {
 
     @Test
     fun testGreeting2() {
-        mvc.perform(MockMvcRequestBuilders.get("/v2/greeting2").param("id", "1"))
+        mvc.perform(MockMvcRequestBuilders.get("/v3/greeting2").param("id", "1"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(
                 MockMvcResultMatchers.content().json(
@@ -57,7 +57,7 @@ class GreetingControllerV2TestKt : BaseMongoTest() {
 
     @Test
     fun testGreeting3() {
-        mvc.perform(MockMvcRequestBuilders.get("/v2/greeting3").param("id", "1"))
+        mvc.perform(MockMvcRequestBuilders.get("/v3/greeting3").param("id", "1"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.`is`(1)))
             .andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.`is`("test")))
@@ -66,7 +66,7 @@ class GreetingControllerV2TestKt : BaseMongoTest() {
     @Test
     fun testGreeting4() {
         val saved = customerRepository.save(Customer("Alice", "Smith"))
-        mvc.perform(MockMvcRequestBuilders.get("/v2/greeting4").param("id", saved.getId()))
+        mvc.perform(MockMvcRequestBuilders.get("/v3/greeting4").param("id", saved.getId()))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.`is`(saved.getId())))
             .andExpect(MockMvcResultMatchers.jsonPath("$.firstName", Matchers.`is`("Alice")))
