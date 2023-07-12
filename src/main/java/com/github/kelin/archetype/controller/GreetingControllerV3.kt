@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/v3")
-class GreetingControllerV3Kt(
+class GreetingControllerV3(
     private val userMapper: UserMapper,
     private val userV2Mapper: UserV2Mapper,
     private val userRepository: UserRepository,
