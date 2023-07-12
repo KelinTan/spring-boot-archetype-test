@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 @AutoConfigureMockMvc
 @SpringBootTest
 @SqlGroup(Sql(TestConstants.USER_DATA), Sql(TestConstants.USER_V2_DATA))
-class GreetingControllerV3TestKt : BaseMongoTest() {
+class GreetingControllerV3Test : BaseMongoTest() {
     @Autowired
     lateinit var mvc: MockMvc
 
