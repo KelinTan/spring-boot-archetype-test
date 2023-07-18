@@ -1,20 +1,12 @@
 package com.github.kelin.archetype;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 
 @SuppressWarnings("SpellCheckingInspection")
-public class BaseMongoTest {
-    @Autowired
-    protected MongoTemplate mongoTemplate;
-
-    @BeforeEach
-    public void setUp() {
-        mongoTemplate.getDb().drop();
-        initData();
-    }
-
-    protected void initData() {
+public class BaseMongoTest extends MongoTestSupport {
+    @DynamicPropertySource
+    static void setProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.data.mongodb.uri", () -> "mongodb://localhost:27017/archetype_test");
     }
 }
