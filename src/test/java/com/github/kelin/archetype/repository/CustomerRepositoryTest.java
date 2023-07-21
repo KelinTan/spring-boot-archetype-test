@@ -3,6 +3,9 @@ package com.github.kelin.archetype.repository;
 import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMERS;
 import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMER_EXTRA;
 import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMER_RECORDS;
+import static com.github.kelin.archetype.support.TestConstants.CUSTOMER_BSON;
+import static com.github.kelin.archetype.support.TestConstants.CUSTOMER_EXTRA_BSON;
+import static com.github.kelin.archetype.support.TestConstants.CUSTOMER_RECORD_BSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.limit;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
@@ -13,10 +16,9 @@ import static org.springframework.data.mongodb.core.aggregation.LookupOperation.
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
-import com.github.kelin.archetype.BaseMongoTest;
 import com.github.kelin.archetype.entity.Customer;
-import com.github.kelin.archetype.entity.CustomerExtra;
-import com.github.kelin.archetype.entity.CustomerRecord;
+import com.github.kelin.archetype.support.BaseMongoTest;
+import com.github.kelin.archetype.support.MongoScript;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -30,29 +32,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+@MongoScript({CUSTOMER_BSON, CUSTOMER_EXTRA_BSON, CUSTOMER_RECORD_BSON})
 @DataMongoTest
 public class CustomerRepositoryTest extends BaseMongoTest {
     @Autowired
     private CustomerRepository customerRepository;
-
-    @Override
-    protected void initData() {
-        List<Customer> customers = new ArrayList<>();
-        customers.add(new Customer("Alice1", "Smith1", 1));
-        customers.add(new Customer("Alice2", "Smith2", 2));
-        customerRepository.insert(customers);
-
-        List<CustomerRecord> customerRecords = new ArrayList<>();
-        customerRecords.add(new CustomerRecord("Alice1", "record1"));
-        customerRecords.add(new CustomerRecord("Alice1", "record1-1"));
-        customerRecords.add(new CustomerRecord("Alice2", "record2"));
-        mongoTemplate.insertAll(customerRecords);
-
-        List<CustomerExtra> customerExtras = new ArrayList<>();
-        customerExtras.add(new CustomerExtra("Alice1", "extra1"));
-        customerExtras.add(new CustomerExtra("Alice2", "extra2"));
-        mongoTemplate.insertAll(customerExtras);
-    }
 
     @Test
     public void findByFirstName() {

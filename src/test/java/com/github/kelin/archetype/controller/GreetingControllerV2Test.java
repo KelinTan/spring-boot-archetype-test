@@ -1,14 +1,14 @@
 package com.github.kelin.archetype.controller;
 
-import static com.github.kelin.archetype.TestConstants.USER_DATA;
-import static com.github.kelin.archetype.TestConstants.USER_V2_DATA;
+import static com.github.kelin.archetype.support.TestConstants.USER_SQL;
+import static com.github.kelin.archetype.support.TestConstants.USER_V2_SQL;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.github.kelin.archetype.BaseMongoTest;
 import com.github.kelin.archetype.entity.Customer;
 import com.github.kelin.archetype.repository.CustomerRepository;
+import com.github.kelin.archetype.support.BaseMongoTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @AutoConfigureMockMvc
 @SpringBootTest
-@SqlGroup({@Sql(USER_DATA), @Sql(USER_V2_DATA)})
+@SqlGroup({@Sql(USER_SQL), @Sql(USER_V2_SQL)})
 public class GreetingControllerV2Test extends BaseMongoTest {
     @Autowired
     private MockMvc mvc;

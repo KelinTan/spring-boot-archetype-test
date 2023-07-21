@@ -1,18 +1,17 @@
 package com.github.kelin.archetype.repository;
 
-import com.github.kelin.archetype.BaseMongoContainerTest;
+import static com.github.kelin.archetype.support.TestConstants.USER_BSON;
+
 import com.github.kelin.archetype.entity.User;
+import com.github.kelin.archetype.support.BaseMongoContainerTest;
+import com.github.kelin.archetype.support.MongoScript;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 
-@DataMongoTest
 @SuppressWarnings("SpellCheckingInspection")
+@MongoScript(USER_BSON)
+@DataMongoTest
 public class MongoTemplateContainerTest extends BaseMongoContainerTest {
-    @Override
-    protected void initData() {
-        mongoTemplate.save(new User("test"), "user");
-    }
-
     @Test
     public void test() {
         User saved = mongoTemplate.save(new User("test"), "user");
