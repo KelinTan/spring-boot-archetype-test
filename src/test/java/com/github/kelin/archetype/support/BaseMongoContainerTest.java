@@ -1,4 +1,4 @@
-package com.github.kelin.archetype;
+package com.github.kelin.archetype.support;
 
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;

@@ -1,6 +1,6 @@
 package com.github.kelin.archetype.mapper;
 
-import static com.github.kelin.archetype.TestConstants.USER_DATA;
+import static com.github.kelin.archetype.support.TestConstants.USER_SQL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,7 +14,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 @MybatisTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-@Sql(USER_DATA)
+@Sql(USER_SQL)
 public class UserMapperTest {
     @Autowired
     private UserMapper userMapper;

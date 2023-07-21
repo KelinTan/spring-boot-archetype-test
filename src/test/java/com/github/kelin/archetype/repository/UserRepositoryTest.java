@@ -1,6 +1,6 @@
 package com.github.kelin.archetype.repository;
 
-import static com.github.kelin.archetype.TestConstants.USER_DATA;
+import static com.github.kelin.archetype.support.TestConstants.USER_SQL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-@Sql(USER_DATA)
+@Sql(USER_SQL)
 public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;

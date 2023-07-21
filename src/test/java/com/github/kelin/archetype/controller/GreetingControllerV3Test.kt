@@ -1,9 +1,9 @@
 package com.github.kelin.archetype.controller
 
-import com.github.kelin.archetype.BaseMongoTest
-import com.github.kelin.archetype.TestConstants
 import com.github.kelin.archetype.entity.Customer
 import com.github.kelin.archetype.repository.CustomerRepository
+import com.github.kelin.archetype.support.BaseMongoTest
+import com.github.kelin.archetype.support.TestConstants
 import org.hamcrest.Matchers
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @AutoConfigureMockMvc
 @SpringBootTest
-@SqlGroup(Sql(TestConstants.USER_DATA), Sql(TestConstants.USER_V2_DATA))
+@SqlGroup(Sql(TestConstants.USER_SQL), Sql(TestConstants.USER_V2_SQL))
 class GreetingControllerV3Test : BaseMongoTest() {
     @Autowired
     lateinit var mvc: MockMvc
