@@ -66,9 +66,9 @@ class GreetingControllerV3Test : BaseMongoTest() {
     @Test
     fun testGreeting4() {
         val saved = customerRepository.save(Customer("Alice", "Smith"))
-        mvc.perform(MockMvcRequestBuilders.get("/v3/greeting4").param("id", saved.getId()))
+        mvc.perform(MockMvcRequestBuilders.get("/v3/greeting4").param("id", saved.id))
             .andExpect(MockMvcResultMatchers.status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.`is`(saved.getId())))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.`is`(saved.id)))
             .andExpect(MockMvcResultMatchers.jsonPath("$.firstName", Matchers.`is`("Alice")))
     }
 }

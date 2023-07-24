@@ -41,14 +41,14 @@ public class CustomerRepositoryTest extends BaseMongoTest {
     @Test
     public void findByFirstName() {
         List<Customer> byFirstName = customerRepository.findByFirstName("Alice1");
-        assertEquals("Alice1", byFirstName.get(0).getFirstName());
+        assertEquals("Alice1", byFirstName.get(0).firstName);
     }
 
     @Test
     public void findByLastName() {
         Query query = query(where("lastName").is("Smith2"));
         List<Customer> byLastName = mongoTemplate.find(query, Customer.class);
-        assertEquals("Smith2", byLastName.get(0).getLastName());
+        assertEquals("Smith2", byLastName.get(0).lastName);
     }
 
     @Test
@@ -59,8 +59,8 @@ public class CustomerRepositoryTest extends BaseMongoTest {
 
         Query query = query(where("lastName").is("Smith2")).with(Sort.by(Direction.ASC, "position"));
         List<Customer> byLastName = mongoTemplate.find(query, Customer.class);
-        assertEquals("Smith2", byLastName.get(0).getLastName());
-        assertEquals(2, byLastName.get(0).getPosition());
+        assertEquals("Smith2", byLastName.get(0).lastName);
+        assertEquals(2, byLastName.get(0).position);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class CustomerRepositoryTest extends BaseMongoTest {
 
         Query query = query(where("lastName").is("Smith2")).skip(1).limit(1);
         List<Customer> byLastName = mongoTemplate.find(query, Customer.class);
-        assertEquals("Smith2", byLastName.get(0).getLastName());
+        assertEquals("Smith2", byLastName.get(0).lastName);
     }
 
     @Test
@@ -86,8 +86,8 @@ public class CustomerRepositoryTest extends BaseMongoTest {
 
         List<Customer> aggregated = mongoTemplate.aggregate(aggregation, CUSTOMERS, Customer.class).getMappedResults();
         assertEquals(1, aggregated.size());
-        assertEquals(2, aggregated.get(0).getRecords().size());
-        assertEquals("record1", aggregated.get(0).getRecords().get(0).getRecord());
+        assertEquals(2, aggregated.get(0).records.size());
+        assertEquals("record1", aggregated.get(0).records.get(0).record);
     }
 
     @Test
@@ -122,8 +122,8 @@ public class CustomerRepositoryTest extends BaseMongoTest {
 
         List<Customer> aggregated = mongoTemplate.aggregate(aggregation, CUSTOMERS, Customer.class).getMappedResults();
         assertEquals(1, aggregated.size());
-        assertEquals(2, aggregated.get(0).getRecords().size());
-        assertEquals("record1", aggregated.get(0).getRecords().get(0).getRecord());
-        assertEquals("extra1", aggregated.get(0).getExtra().getData());
+        assertEquals(2, aggregated.get(0).records.size());
+        assertEquals("record1", aggregated.get(0).records.get(0).record);
+        assertEquals("extra1", aggregated.get(0).extra.data);
     }
 }
