@@ -3,8 +3,8 @@ package com.github.kelin.archetype.repository;
 import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMERS;
 import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMER_EXTRA;
 import static com.github.kelin.archetype.entity.EntityCollections.CUSTOMER_RECORDS;
-import static com.github.kelin.archetype.support.TestConstants.CUSTOMER_BSON;
 import static com.github.kelin.archetype.support.TestConstants.CUSTOMER_EXTRA_BSON;
+import static com.github.kelin.archetype.support.TestConstants.CUSTOMER_JSON;
 import static com.github.kelin.archetype.support.TestConstants.CUSTOMER_RECORD_BSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.limit;
@@ -32,7 +32,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-@MongoScript({CUSTOMER_BSON, CUSTOMER_EXTRA_BSON, CUSTOMER_RECORD_BSON})
+@MongoScript({CUSTOMER_JSON, CUSTOMER_EXTRA_BSON, CUSTOMER_RECORD_BSON})
 @DataMongoTest
 public class CustomerRepositoryTest extends BaseMongoTest {
     @Autowired

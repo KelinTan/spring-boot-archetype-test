@@ -1,6 +1,6 @@
 package com.github.kelin.archetype.repository;
 
-import static com.github.kelin.archetype.support.TestConstants.USER_BSON;
+import static com.github.kelin.archetype.support.TestConstants.USER_JSON;
 
 import com.github.kelin.archetype.entity.User;
 import com.github.kelin.archetype.support.BaseMongoContainerTest;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 
 @SuppressWarnings("SpellCheckingInspection")
-@MongoScript(USER_BSON)
+@MongoScript(USER_JSON)
 @DataMongoTest
 public class MongoTemplateContainerTest extends BaseMongoContainerTest {
     @Test
