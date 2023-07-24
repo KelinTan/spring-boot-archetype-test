@@ -55,9 +55,9 @@ public class GreetingControllerV2Test extends BaseMongoTest {
     void testGreeting4() throws Exception {
         Customer saved = customerRepository.save(new Customer("Alice", "Smith"));
 
-        mvc.perform(MockMvcRequestBuilders.get("/v2/greeting4").param("id", saved.getId()))
+        mvc.perform(MockMvcRequestBuilders.get("/v2/greeting4").param("id", saved.id))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(saved.getId())))
+                .andExpect(jsonPath("$.id", is(saved.id)))
                 .andExpect(jsonPath("$.firstName", is("Alice")));
     }
 }
